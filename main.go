@@ -17,7 +17,7 @@ func main() {
 
 }
 
-func solve(x float64, a float64, b float64) float64 {
+func solve(x, a, b float64) float64 {
 	part1 := math.Log10(math.Pow(x, 2) - 1)
 	part2 := math.Log(a*math.Pow(x, 2)-b) / math.Log(5)
 	y := part1 / part2
