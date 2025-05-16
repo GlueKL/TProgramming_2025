@@ -5,16 +5,39 @@ import (
 	"math"
 )
 
+const (
+	a = 1.1
+	b = 0.09
+)
+
 func main() {
+
 	fmt.Println("Грачев Антон Михайлович")
 	fmt.Println("Вариант 9")
+	fmt.Println()
 
-	fmt.Println("y1: ", solve(1.21, 1.1, 0.09))
-	fmt.Println("y2: ", solve(1.76, 1.1, 0.09))
-	fmt.Println("y3: ", solve(2.53, 1.1, 0.09))
-	fmt.Println("y4: ", solve(3.48, 1.1, 0.09))
-	fmt.Println("y5: ", solve(4.52, 1.1, 0.09))
+	fmt.Println("Задача А")
+	arr := []float64{}
+	for i := 1.2; i <= 2.2; i += 0.2 {
+		arr = append(arr, solve(i, a, b))
+	}
+	fmt.Println("Массив y: ", arr)
 
+	fmt.Println()
+
+	fmt.Println("Задача B")
+	var arrayB []float64 = []float64{1.21, 1.76, 2.53, 3.48, 4.52}
+	arrB := solveArray(arrayB)
+	fmt.Println("Массив y: ", arrB)
+
+}
+
+func solveArray(arrayX []float64) []float64 {
+	arr := []float64{}
+	for _, x := range arrayX {
+		arr = append(arr, solve(x, a, b))
+	}
+	return arr
 }
 
 func solve(x, a, b float64) float64 {
