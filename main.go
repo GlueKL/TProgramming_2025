@@ -1,48 +1,56 @@
 package main
 
-import (
-	"fmt"
-	"math"
-)
+import "fmt"
 
-const (
-	a = 1.1
-	b = 0.09
-)
+type Plane struct {
+	Model string
+	Seats int
+	Speed int
+}
 
+func (p Plane) getModel() string {
+	return p.Model
+}
+
+func (p Plane) getSeats() int {
+	return p.Seats
+}
+
+func (p Plane) getSpeed() int {
+	return p.Speed
+}
+
+func (p *Plane) setSpeed(speed int) {
+	p.Speed = speed
+}
+
+func (p Plane) getPlaneInfo() string {
+	return fmt.Sprintf("Model: %s, Seats: %d, Speed: %d", p.getModel(), p.getSeats(), p.getSpeed())
+}
+
+func NewPlane(model string, seats int, speed int) Plane {
+	return Plane{
+		Model: model,
+		Seats: seats,
+		Speed: speed,
+	}
+}
 func main() {
-
-	fmt.Println("Грачев Антон Михайлович")
 	fmt.Println("Вариант 9")
-	fmt.Println()
 
-	fmt.Println("Задача А")
-	arr := []float64{}
-	for i := 1.2; i <= 2.2; i += 0.2 {
-		arr = append(arr, solve(i, a, b))
-	}
-	fmt.Println("Массив y: ", arr)
+	plane1 := NewPlane("Boeing 747", 400, 900)
+	plane2 := NewPlane("Airbus A380", 525, 980)
+	plane3 := NewPlane("Cessna 172", 4, 100)
 
-	fmt.Println()
+	fmt.Println(plane1.getPlaneInfo())
+	fmt.Println(plane2.getPlaneInfo())
+	fmt.Println(plane3.getPlaneInfo())
 
-	fmt.Println("Задача B")
-	var arrayB []float64 = []float64{1.21, 1.76, 2.53, 3.48, 4.52}
-	arrB := solveArray(arrayB)
-	fmt.Println("Массив y: ", arrB)
+	plane1.setSpeed(1000)
+	plane2.setSpeed(1100)
+	plane3.setSpeed(120)
 
-}
-
-func solveArray(arrayX []float64) []float64 {
-	arr := []float64{}
-	for _, x := range arrayX {
-		arr = append(arr, solve(x, a, b))
-	}
-	return arr
-}
-
-func solve(x, a, b float64) float64 {
-	part1 := math.Log10(math.Pow(x, 2) - 1)
-	part2 := math.Log(a*math.Pow(x, 2)-b) / math.Log(5)
-	y := part1 / part2
-	return y
+	fmt.Println(plane1.getPlaneInfo())
+	fmt.Println(plane2.getPlaneInfo())
+	fmt.Println(plane3.getPlaneInfo())
 }
